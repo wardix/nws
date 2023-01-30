@@ -15,14 +15,11 @@ export class EventsGateway implements OnModuleInit {
 
   onModuleInit() {
     this.server.on('connection', (socket) => {
-      console.log(socket.id);
-      console.log('Connected')
     })
   }
 
   @SubscribeMessage('message')
   onMessage(@MessageBody() body: any) {
-    console.log(body);
     this.server.emit('message', body);
   }
 
