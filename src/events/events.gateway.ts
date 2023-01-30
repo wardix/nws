@@ -3,7 +3,12 @@ import { OnEvent } from "@nestjs/event-emitter";
 import { MessageBody, SubscribeMessage, WebSocketGateway, WebSocketServer } from "@nestjs/websockets";
 import { Server } from "socket.io";
 
-@WebSocketGateway()
+@WebSocketGateway({
+  cors: {
+    origin: true,
+    credentials: true
+  }
+})
 export class EventsGateway implements OnModuleInit {
   @WebSocketServer()
   server: Server;
